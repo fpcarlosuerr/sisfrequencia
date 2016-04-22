@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">       
+            <h:form id="UsuarioForm">
+                <!--<p:messages id="msgid"></p:messages>-->
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>Cadastro de usuários</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Nome: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" size="60"/>
+                                </div>
+                                <div class="col-md-1">
+                                    Conta: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="conta" value="#{usuarioBean.usuario.conta}" required="true" size="30"/>
+                                </div>
+                                <div class="col-md-1">
+                                    Senha: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="senha" value="#{usuarioBean.usuario.senha}" required="true" size="30"/>
+                                </div>
+                                <div class="col-md-1">
+                                    Tipo: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:selectOneMenu id="idTipoUsuario" value="#{usuarioBean.usuario.idTipoUsuario}" converter="converterPadrao" >
+                                        <f:selectItems value="#{usuarioBean.listTipoUsuario}"
+                                                       var="idTipoUsuarioItem"
+                                                       itemValue="#{idTipoUsuarioItem}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:panelGroup>
+                <p:commandButton value="Salvar" update=":UsuarioForm"
+                                 actionListener="#{usuarioBean.salvarUsuario}" icon="ui-icon-disk" />
+                <p:commandButton value="Cancelar"
+                                 action="#{usuarioBean.abrirListaUsuarios}" icon="ui-icon-close"
+                                 immediate="true" />
+
+            </h:form>
+           
+        </ui:define>
+    </ui:composition>
+</html>
