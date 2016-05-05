@@ -58,6 +58,7 @@ public class EmpresaBean extends AbstractBean implements Serializable{
         try {
             empresaControle.salvar(empresa);
             showFacesMessage("Empresa Salvo com Sucesso!!!", 2);
+            empresa = new Empresa();
             listEmpresa = new ArrayList<>();
             listEmpresa = empresaControle.findAll();
         } catch (Exception e) {

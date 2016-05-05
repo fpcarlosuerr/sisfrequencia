@@ -18,90 +18,129 @@
                         <legend>Cadastro de usuários</legend>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="col-md-1">
+                                <div class="col-md-2">
+                                    Empresa: 
+                                </div>
+                                <div class="col-md-10">                              
+                                    <p:selectOneMenu id="empresa"
+                                                     value="#{usuarioBean.idEmpresa}"
+                                                     converter="converterPadrao">
+                                        
+                                        <f:selectItems value="#{usuarioBean.listEmpresa}"
+                                                       var="varE" itemLabel="#{varE.nome}" itemValue="#{varE.id}" />
+                                    </p:selectOneMenu>                                     
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-2">
                                     Nome: 
                                 </div>
-                                <div class="col-md-11">                              
+                                <div class="col-md-10">                              
                                     <p:inputText id="nome" value="#{usuarioBean.usuario.nome}" required="true" requiredMessage="Nome do Uauário é Obrigatório!!" size="60"/>
                                 </div>
-                                <div class="col-md-1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-2">
                                     Conta: 
                                 </div>
-                                <div class="col-md-11">
+                                <div class="col-md-10">
                                     <p:inputText id="conta" value="#{usuarioBean.usuario.conta}" required="true" requiredMessage="Conta do Uauário é Obrigatório!!" size="30"/>
                                 </div>
-                                <div class="col-md-1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-2">
                                     Senha: 
                                 </div>
-                                <div class="col-md-11">
+                                <div class="col-md-10">
                                     <p:inputText id="senha" value="#{usuarioBean.usuario.senha}" required="true" size="30" requiredMessage="Senha deve ser informada!!"/>
                                 </div>
 
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-2">
+                                    Tipo do Usuário: 
+                                </div>
+                                <div class="col-md-10">                              
+                                    <p:selectOneMenu id="grupo"
+                                                     value="#{usuarioBean.idGrupo}"
+                                                     converter="converterPadrao">
+                                        
+                                        <f:selectItems value="#{usuarioBean.listGrupos}"
+                                                       var="varG" itemLabel="#{varG.nome}" itemValue="#{varG.id}" />
+                                    </p:selectOneMenu>                                     
+                                </div>
                             </div>
                         </div>
                     </fieldset>
                 </h:panelGroup>
                 <p:commandButton value="Salvar" update=":UsuarioForm :UsuarioListForm"
                                  actionListener="#{usuarioBean.salvaForm}" icon="ui-icon-disk" />
-                <p:commandButton value="Cancelar"
-                                 action="#" icon="ui-icon-close"
-                                 immediate="true" />
+
 
             </h:form>
             <h:form id="UsuarioListForm">
                 <h:panelGroup id="Listausuarios2">
-                <p:dataTable id="datalist" value="#{usuarioBean.listUsuario}" var="s"
-                             selectionMode="single"
-                             paginator="true"
-                             rowKey="#{s.id}"
-                             rows="10"
-                             rowsPerPageTemplate="10,20,30,40,50"
-                             emptyMessage="Nenhuma Usuário Cadastrado"
-                             sortBy="#{s.id}" 
-                             sortOrder="descending"
-                             >
-                    <p:column width="10%">
-                        <f:facet name="header">
-                            <h:outputText value="Id"/>
-                        </f:facet>
-                        <h:outputText value="#{s.id}"/>
-                    </p:column>
-                    <p:column filterBy="#{s.nome}" width="30%">
-                        <f:facet name="header">
-                            <h:outputText value="Nome"/>
-                        </f:facet>
-                        <h:outputText value="#{s.nome}"/>
-                    </p:column>
-                    <p:column width="20%">
-                        <f:facet name="header">
-                            <h:outputText value="Conta"/>
-                        </f:facet>
-                        <h:outputText value="#{s.conta}"/>
-                    </p:column>
-                    <p:column width="20%">
-                        <f:facet name="header">
-                            <h:outputText value="Senha"/>
-                        </f:facet>
-                        <h:outputText value="#{s.senha}"/>
-                    </p:column>
-                    <p:column headerText="Opções" width="20%">
+                    <p:dataTable id="datalist" value="#{usuarioBean.listUsuario}" var="s"
+                                 selectionMode="single"
+                                 paginator="true"
+                                 rowKey="#{s.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="Nenhuma Usuário Cadastrado"
+                                 sortBy="#{s.id}" 
+                                 sortOrder="descending"
+                                 >
+                        <p:column width="10%">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{s.id}"/>
+                        </p:column>
+                        <p:column filterBy="#{s.nome}" width="30%">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{s.nome}"/>
+                        </p:column>
+                        <p:column width="20%">
+                            <f:facet name="header">
+                                <h:outputText value="Conta"/>
+                            </f:facet>
+                            <h:outputText value="#{s.conta}"/>
+                        </p:column>
+                        <p:column width="20%">
+                            <f:facet name="header">
+                                <h:outputText value="Senha"/>
+                            </f:facet>
+                            <h:outputText value="#{s.senha}"/>
+                        </p:column>
+                        <p:column headerText="Opções" width="20%">
 
-                        <p:commandButton icon="ui-icon-pencil"
-                                         action="#{usuarioBean.editaForm(s)}"
-                                         title="Editar" escape="true" />
+                            <p:commandButton icon="ui-icon-pencil"
+                                             action="#{usuarioBean.editaForm(s)}"
+                                             title="Editar" escape="true" />
 
-                        <p:commandButton icon="ui-icon-trash" update=":UsuarioForm :UsuarioListForm"
-                                         action="#{usuarioBean.removerForm(s)}">
+                            <p:commandButton icon="ui-icon-trash" update=":UsuarioForm :UsuarioListForm"
+                                             action="#{usuarioBean.removerForm(s)}">
 
-                            <p:confirm header="Remover"
-                                       message="Tem certeza que deseja excluir o Usuário: #{s.conta}... "
-                                       icon="ui-icon-alert" />
+                                <p:confirm header="Remover"
+                                           message="Tem certeza que deseja excluir o Usuário: #{s.conta}... "
+                                           icon="ui-icon-alert" />
 
-                        </p:commandButton>
-                    </p:column>
+                            </p:commandButton>
+                        </p:column>
 
-                </p:dataTable>
-            </h:panelGroup>
+                    </p:dataTable>
+                </h:panelGroup>
             </h:form>
         </ui:define>
     </ui:composition>
