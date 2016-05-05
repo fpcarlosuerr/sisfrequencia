@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">
+            <h:form id="insituicaoForm">
+                <p:messages id="msgid"></p:messages>
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>Cadastro de Insituições</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Insituição: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="nome" value="#{instituicaoBean.instituicao.nome}" required="true" requiredMessage="Nome da Insituição deve ser informado" size="60"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Sigla: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="sigla" value="#{instituicaoBean.instituicao.sigla}"  size="20"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    responsável: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="responsavel" value="#{instituicaoBean.instituicao.responsavel}" required="true" requiredMessage="Nome do Responsável deve ser informado" size="60"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Endereço: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputTextarea id="endereco" value="#{instituicaoBean.instituicao.endereco}" cols="60" rows="3" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    E-Mail: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="email" value="#{instituicaoBean.instituicao.email}" size="60"/>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:panelGroup>
+                <p:commandButton value="Salvar" action="#{instituicaoBean.salvar}"
+                                 update=":insituicaoForm"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>   
+
+</html>
+

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">       
+            <h:form id="UsuarioForm">
+                <!--<p:messages id="msgid"></p:messages>-->
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>Cadastro de seridores</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Matrícula: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:inputText id="nome" value="#{servidorBean.servidor.matricula}" required="true" size="10"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Data Entrada: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:calendar id="dataEntrada" value="#{servidorBean.servidor.dataEntrada}" required="true"/>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Data Saída: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:calendar id="dataSaida" value="#{servidorBean.servidor.dataSaida}" />
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Departamento: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:selectOneMenu id="idDepartamento" value="#{servidorBean.servidor.departamento}" converter="converterPadrao" >
+                                        <f:selectItems value="#{servidorBean.listDepartamento}"
+                                                       var="vDEP"
+                                                       itemValue="#{vDEP}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Cargo: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:selectOneMenu id="idCargo" value="#{servidorBean.servidor.idCargo}" converter="converterPadrao" >
+                                        <f:selectItems value="#{servidorBean.listCargo}"
+                                                       var="vCGO"
+                                                       itemValue="#{vCGO}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Situação do Servidor: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:selectOneMenu id="idSituacaoServidor" value="#{servidorBean.servidor.idSituacaoServidor}" converter="converterPadrao" >
+                                        <f:selectItems value="#{servidorBean.listSituacaoServidors}"
+                                                       var="vSTSV"
+                                                       itemValue="#{vSTSV}"/>
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Servidor Ativo: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:selectBooleanButton id="ativado"
+                                                           value="#{servidorBean.servidor.ativado}"
+                                                           onLabel="Sim" offLabel="Não" style="width:60px"
+                                                           rendered="#{servidorBean.servidor != null}" />                                   
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

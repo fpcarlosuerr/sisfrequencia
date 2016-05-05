@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">       
+            <h:form id="EmpresaForm">
+                <p:messages id="msgid"></p:messages>
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>Cadastro de Empresa</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Nome: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:inputText id="nome" value="#{empresaBean.empresa.nome}" required="true" requiredMessage="Nome da Empresa é Obrigatório!!" size="60"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Sigla: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="sigla" value="#{empresaBean.empresa.sigla}"  size="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Cnpj: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="cnpj" value="#{empresaBean.empresa.cnpj}"  size="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Responsável: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="responsavel" value="#{empresaBean.empresa.responsavel}"  size="60"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Endereço: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputTextarea id="endereco" value="#{empresaBean.empresa.endereco}" cols="60" rows="3" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Telefone: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="telefone" value="#{empresaBean.empresa.telefone}"  size="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    E-Mail: 
+                                </div>
+                                <div class="col-md-11">
+                                    <p:inputText id="emial" value="#{empresaBean.empresa.emial}"  size="60"/>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:panelGroup>
+                <p:commandButton value="Salvar" update=":EmpresaForm :EmpresaListForm"
+                                 actionListener="#{empresaBean.salvaForm}" icon="ui-icon-disk" />
+                <p:commandButton value="Cancelar"
+                                 action="#" icon="ui-icon-close"
+                                 immediate="true" />
+
+            </h:form>
+            <h:form id="EmpresaListForm">
+                <h:panelGroup id="Listaempresas2">
+                    <p:dataTable id="datalist" value="#{empresaBean.listEmpresa}" var="s"
+                                 selectionMode="single"
+                                 paginator="true"
+                                 rowKey="#{s.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="Nenhuma Empresa Cadastrado"
+                                 sortBy="#{s.id}" 
+                                 sortOrder="descending"
+                                 >
+                        <p:column width="10%">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{s.id}"/>
+                        </p:column>
+                        <p:column filterBy="#{s.nome}" width="30%">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{s.nome}"/>
+                        </p:column>
+                        <p:column width="20%">
+                            <f:facet name="header">
+                                <h:outputText value="Responsável"/>
+                            </f:facet>
+                            <h:outputText value="#{s.responsavel}"/>
+                        </p:column>
+                        <p:column width="20%">
+                            <f:facet name="header">
+                                <h:outputText value="Telefone"/>
+                            </f:facet>
+                            <h:outputText value="#{s.telefone}"/>
+                        </p:column>
+                        <p:column headerText="Opções" width="20%">
+
+                            <p:commandButton icon="ui-icon-pencil"
+                                             action="#{empresaBean.editaForm(s)}"
+                                             title="Editar" escape="true" />
+
+                            <p:commandButton icon="ui-icon-trash" update=":EmpresaForm :EmpresaListForm"
+                                             action="#{empresaBean.removerForm(s)}">
+
+                                <p:confirm header="Remover"
+                                           message="Tem certeza que deseja excluir o Empresa: #{s.sigla}... "
+                                           icon="ui-icon-alert" />
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

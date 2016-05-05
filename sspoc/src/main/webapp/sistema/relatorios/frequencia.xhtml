@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content"> 
+            <h:form id="FrequenciaListForm">
+                <h:panelGroup id="ListaFrequencia">
+                    <table width="100%" border="1">
+                        <tr>
+                            <td rowspan="4">Logo</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Empresa:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Setor/Departamento:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Funcionário:
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="100%" border="1">
+                        <tr>
+                            <td width="2%">Dia</td>
+                            <td colspan="2" width="10%">Horário</td>
+                            <td width="10%">Assinatura</td>
+                            <td width="10%">Obs</td>
+                            <td colspan="2" width="10%">Horário</td>
+                            <td width="10%">Assinatura</td>
+                            <td width="10%">Obs</td>
+                            <td colspan="2" width="10%">Horário</td>
+                            <td width="10%">Assinatura</td>
+                            <td width="10%">Obs</td>
+                        </tr>
+                        <ui:repeat value="#{frequenciaBean.listaDiasDoMes}" var="item">
+                            <tr>
+                                <td>#{item}</td>                                
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>#{frequenciaBean.pegaFimDeSemana(item)}</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>#{frequenciaBean.pegaFimDeSemana(item)}</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>#{frequenciaBean.pegaFimDeSemana(item)}</td>
+                                <td>&nbsp;</td>
+                            </tr>                            
+                        </ui:repeat>
+                    </table>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
