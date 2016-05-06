@@ -55,10 +55,17 @@
                             <p:menuitem value="Inicio" url="/" icon="ui-icon-home" style="padding-right: 4px"  />
                             <p:submenu label="Usuário">                                
                                 <p:menuitem value="Cad.Usuário" action="#{usuarioBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
-                                <p:menuitem value="Cad.Grupo" action="#{usuarioBean.abreGrupoForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                                <p:menuitem value="Cad.Tipo" action="#{usuarioBean.abreGrupoForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
                             </p:submenu>  
                             <p:submenu label="Empresa">                                
                                 <p:menuitem value="Cad.Empresa" action="#{empresaBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                            </p:submenu> 
+                            <p:submenu label="Cliente">                                
+                                <p:menuitem value="Cad.Cliente" action="#{clienteBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                            </p:submenu> 
+                             <p:submenu label="Classificação">                                
+                                 <p:menuitem value="Cad.Grupo" action="#{classificacaoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                                 <p:menuitem value="Cad.Sub Grupo" action="#{classificacaoBean.abreSubForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
                             </p:submenu> 
                         </p:menu>
                     </h:form>
