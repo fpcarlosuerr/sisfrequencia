@@ -100,7 +100,7 @@ public class Grupo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.uerr.sspoc.modelo.Grupo[ id=" + id + " ]";
+        return nome;
     }
     
 }

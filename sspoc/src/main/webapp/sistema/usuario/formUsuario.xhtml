@@ -23,11 +23,11 @@
                                 </div>
                                 <div class="col-md-10">                              
                                     <p:selectOneMenu id="empresa"
-                                                     value="#{usuarioBean.idEmpresa}"
+                                                     value="#{usuarioBean.empresa}"
                                                      converter="converterPadrao">
                                         
                                         <f:selectItems value="#{usuarioBean.listEmpresa}"
-                                                       var="varE" itemLabel="#{varE.nome}" itemValue="#{varE.id}" />
+                                                       var="varE" itemLabel="#{varE.nome}" itemValue="#{varE}" />
                                     </p:selectOneMenu>                                     
                                 </div>
                             </div>
@@ -70,13 +70,10 @@
                                     Tipo do Usuário: 
                                 </div>
                                 <div class="col-md-10">                              
-                                    <p:selectOneMenu id="grupo"
-                                                     value="#{usuarioBean.idGrupo}"
-                                                     converter="converterPadrao">
-                                        
-                                        <f:selectItems value="#{usuarioBean.listGrupos}"
-                                                       var="varG" itemLabel="#{varG.nome}" itemValue="#{varG.id}" />
-                                    </p:selectOneMenu>                                     
+                                    <p:selectCheckboxMenu id="grupo" value="#{usuarioBean.usuario.usuarioGrupoList}" label="grupo"
+                              filter="true" filterMatchMode="startsWith" panelStyle="width:250px">
+                                        <f:selectItems value="#{usuarioBean.listGrupos}" />
+        </p:selectCheckboxMenu>                                   
                                 </div>
                             </div>
                         </div>

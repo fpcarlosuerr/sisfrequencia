@@ -8,6 +8,7 @@ package br.edu.uerr.sspoc.visao;
 import br.edu.uerr.sspoc.controle.EmpresaControle;
 import br.edu.uerr.sspoc.controle.GrupoControle;
 import br.edu.uerr.sspoc.controle.UsuarioControle;
+import br.edu.uerr.sspoc.controle.UsuarioGrupoControle;
 import br.edu.uerr.sspoc.modelo.Empresa;
 import br.edu.uerr.sspoc.modelo.Grupo;
 import br.edu.uerr.sspoc.modelo.Usuario;
@@ -31,6 +32,10 @@ public class UsuarioBean extends AbstractBean implements Serializable{
     
     private Grupo   grupo;
     
+    private Empresa empresa;
+    
+    private UsuarioGrupo usuarioGrupo;
+    
     @EJB
     private UsuarioControle usuarioControle;
     
@@ -40,13 +45,18 @@ public class UsuarioBean extends AbstractBean implements Serializable{
     @EJB
     private EmpresaControle empresaControle;
     
+    @EJB
+    private UsuarioGrupoControle usuarioGrupoControle;
+    
     private List<Usuario> listUsuario = new ArrayList<>();
     
     private List<Grupo> listGrupos = new ArrayList<>();
-    
-    private List<UsuarioGrupo> usuarioGrupoList = new ArrayList<>();
-    
+       
     private List<Empresa> listEmpresa = new ArrayList<>();
+    
+    private List<Grupo> listGrupoUsuario = new ArrayList<>();
+    
+    
     
     
     public UsuarioBean(){
@@ -56,7 +66,10 @@ public class UsuarioBean extends AbstractBean implements Serializable{
     public String abreForm(){
         try {
             usuario = new Usuario();
-            usuario.setUsuarioGrupoList(new UsuarioGrupo());
+            usuarioGrupo = new UsuarioGrupo();
+            empresa = new Empresa();
+            //grupo = new Grupo();
+            
             listEmpresa = new ArrayList<>();
             listEmpresa = empresaControle.findAll();
             listGrupos = new ArrayList<>();
@@ -73,6 +86,22 @@ public class UsuarioBean extends AbstractBean implements Serializable{
         try {
             usuario = new Usuario();
             usuario = usuarioControle.pegarUsuarioPeloId(aux.getId());
+            usuarioGrupo = new UsuarioGrupo();
+            listGrupoUsuario = new ArrayList<>();
+            empresa = new Empresa();
+            grupo = new Grupo();
+            Integer idGrupo = null;
+            Integer idEmpresa = null;
+            for (UsuarioGrupo aux1 : usuario.getUsuarioGrupoList()) {                
+                idGrupo = aux1.getIdGrupo().getId();                
+                listGrupos.add(grupoControle.pegarGrupoPeloId(idGrupo));
+                //idEmpresa = aux1.getIdEmpresa().getId();
+            }
+            
+            empresa = empresaControle.pegarEmpresaPeloId(idEmpresa);
+            
+            
+            
             return redirect("/sistema/usuario/formUsuario.xhtml");
         } catch (Exception e) {
             return null;
@@ -82,6 +111,12 @@ public class UsuarioBean extends AbstractBean implements Serializable{
     public void salvaForm(){
         try {
             usuarioControle.salvar(usuario);
+            usuarioGrupo = new UsuarioGrupo();
+            
+            usuarioGrupo.setIdEmpresa(empresa);
+            usuarioGrupo.setIdGrupo(grupo);
+            usuarioGrupo.setIdUsuario(usuario);
+            usuarioGrupoControle.salvar(usuarioGrupo);
             showFacesMessage("Usuário Salvo com Sucesso!!!", 2);
             listUsuario = new ArrayList<>();
             listUsuario = usuarioControle.findAll();
@@ -185,6 +220,30 @@ public class UsuarioBean extends AbstractBean implements Serializable{
 
     public void setListEmpresa(List<Empresa> listEmpresa) {
         this.listEmpresa = listEmpresa;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public UsuarioGrupo getUsuarioGrupo() {
+        return usuarioGrupo;
+    }
+
+    public void setUsuarioGrupo(UsuarioGrupo usuarioGrupo) {
+        this.usuarioGrupo = usuarioGrupo;
+    }
+
+    public List<Grupo> getListGrupoUsuario() {
+        return listGrupoUsuario;
+    }
+
+    public void setListGrupoUsuario(List<Grupo> listGrupoUsuario) {
+        this.listGrupoUsuario = listGrupoUsuario;
     }
     
     
