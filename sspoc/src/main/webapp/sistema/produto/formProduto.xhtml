@@ -16,7 +16,23 @@
 
                     <fieldset>
                         <legend>Cadastro de Sub Classificação Grupo</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-1">
+                                    Grupo: 
+                                </div>
+                                <div class="col-md-11">                              
+                                    <p:selectOneMenu id="grupoProduto" value="#{produtoBean.produto.idSubgrupoProduto}" converter="converterPadrao">
 
+                                        <f:selectItems value="#{produtoBean.listSubgrupoProduto}"
+                                                       var="varSG"
+                                                       itemLabel="#{varSG.idGrupoProduto.nome}: #{varSG.nome}"
+                                                       itemValue="#{varSG}"
+                                                       />
+                                    </p:selectOneMenu>	
+                                </div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="col-md-3">
@@ -131,11 +147,11 @@
                             </f:facet>
                             <h:outputText value="#{s.valorUnitario}"/>
                         </p:column>
-                       <p:column  width="5%">
+                        <p:column  width="5%">
                             <f:facet name="header">
                                 <h:outputText value="Qtd Estoque Mínimo"/>
                             </f:facet>
-                           <h:outputText value="#{s.quantidadeEstoqueMinimo}"/>
+                            <h:outputText value="#{s.quantidadeEstoqueMinimo}"/>
                         </p:column> 
                         <p:column  width="5%">
                             <f:facet name="header">

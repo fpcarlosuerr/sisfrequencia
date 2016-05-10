@@ -8,6 +8,7 @@ package br.edu.uerr.sspoc.visao;
 import br.edu.uerr.sspoc.controle.ProdutoControle;
 import br.edu.uerr.sspoc.controle.SubgrupoProdutoControle;
 import br.edu.uerr.sspoc.modelo.Produto;
+import br.edu.uerr.sspoc.modelo.SubgrupoProduto;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +35,10 @@ public class ProdutoBean extends AbstractBean implements Serializable{
     
     private List<Produto> listProduto = new ArrayList<>();
     
+    private List<SubgrupoProduto> listSubgrupoProduto = new ArrayList<>();
+    
+    
+    
     
     
     
@@ -45,6 +50,8 @@ public class ProdutoBean extends AbstractBean implements Serializable{
            produto = new Produto();
            listProduto = new ArrayList<>();
            listProduto = produtoControle.findAll();
+           listSubgrupoProduto = new ArrayList<>();
+           listSubgrupoProduto = subgrupoProdutoControle.findAll();
             return redirect("/sistema/produto/formProduto.xhtml");
         } catch (Exception e) {
             return null;
@@ -55,6 +62,8 @@ public class ProdutoBean extends AbstractBean implements Serializable{
         try {
             produto = new Produto();
             produto = produtoControle.pegarProdutoPeloId(aux.getId());
+            listSubgrupoProduto = new ArrayList<>();
+           listSubgrupoProduto = subgrupoProdutoControle.findAll();
             return redirect("/sistema/produto/formProduto.xhtml");
         } catch (Exception e) {
             return null;
@@ -63,7 +72,7 @@ public class ProdutoBean extends AbstractBean implements Serializable{
     
     public void salvaForm(){
         try {
-            produto.setIdSubgrupoProduto(subgrupoProdutoControle.pegarSubgrupoProdutoPeloId(1));
+            //produto.setIdSubgrupoProduto(subgrupoProdutoControle.pegarSubgrupoProdutoPeloId(1));
             produtoControle.salvar(produto);
             
             showFacesMessage("Produto Salvo com Sucesso!!!", 2);
@@ -105,6 +114,14 @@ public class ProdutoBean extends AbstractBean implements Serializable{
 
     public void setListProduto(List<Produto> listProduto) {
         this.listProduto = listProduto;
+    }
+
+    public List<SubgrupoProduto> getListSubgrupoProduto() {
+        return listSubgrupoProduto;
+    }
+
+    public void setListSubgrupoProduto(List<SubgrupoProduto> listSubgrupoProduto) {
+        this.listSubgrupoProduto = listSubgrupoProduto;
     }
     
     
