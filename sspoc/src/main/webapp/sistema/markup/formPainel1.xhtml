@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">       
+            <h:form id="CustoForm">
+                <p:messages id="msgid"></p:messages>
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>DashBoard - Cálculo do índice Mark-up</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Preço de Venda 
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Custo Indireto de Fabricação 
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)ICMS sobre Vendas
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)PIS / COFINS
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Despesas Comerciais Fixas
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Despesas Administrativas
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Despesas Financeiras
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Custo de Oportunidade
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (-)Margem de Lucro desejada
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    (=) Mark-up Divisor 
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    ou Mark-up Multiplicador
+                                </div>
+                                <div class="col-md-9">                              
+
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:panelGroup>
+
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+</html>
