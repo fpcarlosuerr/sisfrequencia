@@ -10,7 +10,7 @@
     </h:head>
     <ui:composition template="/template/template.xhtml">
         <ui:define name="content">       
-            <h:form id="CustoForm">
+            <h:form id="PainelForm">
                 <p:messages id="msgid"></p:messages>
                 <h:panelGroup id="display" layout="block">                    
 
@@ -22,7 +22,7 @@
                                     Preço de Venda 
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="precoVenda" value="#{painelABean.indiceMarkup.precoVenda}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                     (-)Custo Indireto de Fabricação 
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="custoIndiretoFabricacao" value="#{painelABean.indiceMarkup.custoIndiretoFabricacao}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +42,7 @@
                                     (-)ICMS sobre Vendas
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="icmsSobreVendas" value="#{painelABean.indiceMarkup.icmsSobreVendas}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                     (-)PIS / COFINS
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="pisCofins" value="#{painelABean.indiceMarkup.pisCofins}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                     (-)Despesas Comerciais Fixas
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="despesasComerciaisFixas" value="#{painelABean.indiceMarkup.despesasComerciaisFixas}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                     (-)Despesas Administrativas
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="despesasAdministrativas" value="#{painelABean.indiceMarkup.despesasAdministrativas}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -84,7 +84,7 @@
                                     (-)Despesas Financeiras
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="despesasFinanceiras" value="#{painelABean.indiceMarkup.despesasFinanceiras}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                                     (-)Custo de Oportunidade
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="custoOportunidade" value="#{painelABean.indiceMarkup.custoOportunidade}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +106,7 @@
                                     (-)Margem de Lucro desejada
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="margemLucroDesejada" value="#{painelABean.indiceMarkup.margemLucroDesejada}"  size="30"/>
                                 </div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                                     (=) Mark-up Divisor 
                                 </div>
                                 <div class="col-md-9">                              
-
+                                    <p:inputText id="markupDivisor" value="#{painelABean.indiceMarkup.markupDivisor}"  size="30"/>
                                 </div>
                             </div>
                         </div>
