@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">       
+            <h:form id="CustoForm">
+                <p:messages id="msgid"></p:messages>
+                <h:panelGroup id="display" layout="block">                    
+
+                    <fieldset>
+                        <legend>Cadastro de Custos</legend>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Empresa: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:selectOneMenu id="empresa" value="#{custoBean.custo.idEmpresa}" converter="converterPadrao">
+
+                                        <f:selectItems value="#{custoBean.listEmpresa}"
+                                                       var="varE"
+                                                       itemLabel="#{varE.nome}"
+                                                       itemValue="#{varE}"
+                                                       />
+                                    </p:selectOneMenu>	
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Custo 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="nome" value="#{custoBean.custo.nome}" required="true" requiredMessage="Nome do Custo é Obrigatório!!" size="60"/>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Valor 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="valor" value="#{custoBean.custo.valor}"  size="30"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Tipo: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:selectOneMenu id="tipoCusto" value="#{custoBean.custo.idTipoCusto}" converter="converterPadrao">
+
+                                        <f:selectItems value="#{custoBean.listTipoCusto}"
+                                                       var="varTC"
+                                                       itemLabel="#{varTC.nome}"
+                                                       itemValue="#{varTC}"
+                                                       />
+                                    </p:selectOneMenu>	
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </h:panelGroup>
+                <p:commandButton value="Salvar" update=":CustoForm :CustoListForm"
+                                 actionListener="#{custoBean.salvaForm}" icon="ui-icon-disk" />
+
+
+            </h:form>
+            <h:form id="CustoListForm">
+                <h:panelGroup id="Listaclientes2">
+                    <p:dataTable id="datalist" value="#{custoBean.listCusto}" var="s"
+                                 selectionMode="single"
+                                 paginator="true"
+                                 rowKey="#{s.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="Nenhuma Custo Cadastrado"
+                                 sortBy="#{s.id}" 
+                                 sortOrder="descending"
+                                 >
+                        <p:column width="8%">
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{s.id}"/>
+                        </p:column>
+                        <p:column filterBy="#{s.nome}" width="20%">
+                            <f:facet name="header">
+                                <h:outputText value="Nome"/>
+                            </f:facet>
+                            <h:outputText value="#{s.nome}"/>
+                        </p:column>
+                        <p:column  width="10%">
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="#{s.valor}"/>
+                        </p:column>
+                        <p:column  width="10%">
+                            <f:facet name="header">
+                                <h:outputText value="Tipo"/>
+                            </f:facet>
+                            <h:outputText value="#{s.idTipoCusto.nome}"/>
+                        </p:column>
+                        <p:column  width="35%">
+                            <f:facet name="header">
+                                <h:outputText value="Empresa"/>
+                            </f:facet>
+                            <h:outputText value="#{s.idEmpresa.nome}"/>
+                        </p:column> 
+                        <p:column headerText="Opções" width="25%">
+
+                            <p:commandButton icon="ui-icon-pencil"
+                                             action="#{custoBean.editaForm(s)}"
+                                             title="Editar" escape="true" />
+
+                            <p:commandButton icon="ui-icon-trash" update=":CustoForm :CustoListForm"
+                                             action="#{custoBean.removerForm(s)}">
+
+                                <p:confirm header="Remover"
+                                           message="Tem certeza que deseja excluir o Custo: #{s.nome}... "
+                                           icon="ui-icon-alert" />
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

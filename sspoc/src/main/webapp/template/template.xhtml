@@ -11,13 +11,13 @@
                 <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
                 <title>Eventos pro java Web</title>                
             </f:facet>
-            
-            
+
+
             <h:outputStylesheet library="bootstrap/css" name="bootstrap.min.css" />
             <h:outputStylesheet library="bootstrap/css" name="bootstrap-theme.min.css" />
             <h:outputScript library="bootstrap/js" name="bootstrap.min.js" />
             <h:outputScript library="jquery" name="jquery-2.1.4.min.js" />
-            
+
             <script>
                 $a = jQuery.noConflict();
                 $a(document).ready(function () {
@@ -36,7 +36,7 @@
             <p:layout fullPage="true">
                 <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                     Header
-                    
+
                 </p:layoutUnit>
                 <p:layoutUnit position="south" size="100" header="Esconder"  collapsible="true">
                     <div class="row">
@@ -63,14 +63,16 @@
                             <p:submenu label="Cliente">                                
                                 <p:menuitem value="Cad.Cliente" action="#{clienteBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
                             </p:submenu> 
-                             <p:submenu label="Classificação">                                
-                                 <p:menuitem value="Cad.Grupo" action="#{classificacaoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
-                                 <p:menuitem value="Cad.Sub Grupo" action="#{classificacaoBean.abreSubForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                            <p:submenu label="Classificação">                                
+                                <p:menuitem value="Cad.Grupo" action="#{classificacaoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                                <p:menuitem value="Cad.Sub Grupo" action="#{classificacaoBean.abreSubForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
                             </p:submenu> 
-                             <p:submenu label="Produto">                                
-                                 <p:menuitem value="Cad.Produto" action="#{produtoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                            <p:submenu label="Produto">                                
+                                <p:menuitem value="Cad.Produto" action="#{produtoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
                             </p:submenu> 
-
+                            <p:submenu label="Custos">                                
+                                <p:menuitem value="Cad.Custos" action="#{custoBean.abreForm()}" style="padding-right: 4px" icon="ui-icon-person" />                                
+                            </p:submenu> 
                         </p:menu>
                     </h:form>
                 </p:layoutUnit>
