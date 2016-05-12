@@ -14,31 +14,35 @@ import javax.persistence.Transient;
 public class IndiceMarkup {
     
     @Transient
-    private double precoVenda;
+    private double precoVenda=100.00;
     @Transient
-    private double custoIndiretoFabricacao;
+    private double custoIndiretoFabricacao=3.00;
     @Transient
-    private double icmsSobreVendas;
+    private double icmsSobreVendas=18;
     @Transient
-    private double pisCofins;
+    private double pisCofins=3.65;
     @Transient
-    private double despesasComerciaisFixas;
+    private double despesasComerciaisFixas=2.5;
     @Transient
-    private double despesasAdministrativas;
+    private double despesasAdministrativas=6.00;
     @Transient
-    private double despesasFinanceiras;
+    private double despesasFinanceiras=1.00;
     @Transient
-    private double custoOportunidade;
+    private double custoOportunidade=1.00;
     @Transient
-    private double margemLucroDesejada;
+    private double margemLucroDesejada=2.00;
     @Transient
     private double markupDivisor;
+    @Transient
+    private double markupMultiplicador;
 
     public IndiceMarkup() {
     }
 
     public void calculaMarkupDivisor() {
-        markupDivisor = precoVenda - (custoIndiretoFabricacao + icmsSobreVendas + pisCofins + despesasAdministrativas + despesasComerciaisFixas + despesasFinanceiras + custoOportunidade + margemLucroDesejada);
+        markupDivisor = (precoVenda - (custoIndiretoFabricacao + icmsSobreVendas + pisCofins + despesasAdministrativas + despesasComerciaisFixas + despesasFinanceiras + custoOportunidade + margemLucroDesejada))/100;
+        markupMultiplicador = 1/markupDivisor;
+        
     }
 
     public double getPrecoVenda() {
@@ -122,4 +126,14 @@ public class IndiceMarkup {
         this.markupDivisor = markupDivisor;
     }
 
+    public double getMarkupMultiplicador() {
+        return markupMultiplicador;
+    }
+
+    public void setMarkupMultiplicador(double markupMultiplicador) {
+        this.markupMultiplicador = markupMultiplicador;
+    }
+
+    
+    
 }

@@ -75,6 +75,10 @@ public class Produto implements Serializable {
 
     public Produto() {
     }
+    
+    
+    
+    
 
     public Produto(Integer id) {
         this.id = id;
