@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+     <h:head>
+        <h:outputStylesheet name="css/jsfcrud.css" />
+    </h:head>
+
+    <ui:composition template="/template/template.xhtml">
+        <ui:define name="content">
+            <!-- Iniciamos os arquivo abrindo um formulário e dando um id -->
+            <h:form id="formEmpresa">
+                <!-- apresentar uma mensagem de informação ao usuário, se os 
+                     dados foram salvos, alterados ou excluídos-->                
+                <p:messages id="msgid"></p:messages>
+                <!-- adicionar um painel para organmizar as informações-->
+                <h:panelGroup id="display" layout="block"> 
+                    <!-- criar uma cerquilha entre os dados -->
+                    <fieldset>
+                        <!-- criar uma legenda na cerquilha -->
+                        <legend>Cadastro de Empresa</legend>
+                        <!-- criar uma linha usando divs -->
+                        <div class="row">
+                            <!-- criar uma coluna com 12 posições na linah da div -->
+                            <div class="col-lg-12">
+                                <!-- criar uma divisão mesclando 3 colunas e colocar uma mensagem -->
+                                <div class="col-md-3">
+                                    Nome da Empresa:                                     
+                                </div>
+                                <!-- criar uma divisão mesclando 9 colunas e colocar uma entrada de dados -->
+                                <div class="col-md-9">                              
+                                    <p:inputText id="nome" value="#{empresaVisao.empresa.nome}" size="60" required="true" requiredMessage="Nome da Empresa é obrigatório!!!"/>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fim da primeira linha do formulário, podemos repetir agora para os outros campus -->
+                        <!-- próxima linha do formulário -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    CNPJ da Empresa: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="cnpj" value="#{empresaVisao.empresa.cnpj}" size="30"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <!-- fim da segunda linha do formulário, podemos repetir agora para os outros campus -->
+                        <!-- próxima linha do formulário -->
+                        <!-- observe a diferença, no endereço estamos usando um componente diferente -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Endereço da Empresa: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputTextarea id="endereco" value="#{empresaVisao.empresa.endereco}" cols="60" rows="3" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- fim da terceira linha do formulário, podemos repetir agora para os outros campus -->
+                        <!-- próxima linha do formulário -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Telefone da Empresa: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="telefone" value="#{empresaVisao.empresa.telefone}" size="30"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <!-- fim da quarta linha do formulário, podemos repetir agora para os outros campus -->
+                        <!-- próxima linha do formulário -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="col-md-3">
+                                    Responsável da Empresa: 
+                                </div>
+                                <div class="col-md-9">                              
+                                    <p:inputText id="responsavel" value="#{empresaVisao.empresa.responsavel}" size="60"/>
+                                </div>
+                            </div>
+                        </div>                        
+                        <!-- fim da quinta linha do formulário, podemos repetir agora para os outros campus -->
+
+                    </fieldset>
+                </h:panelGroup>
+                <!-- botão -->
+                <p:commandButton value="Salvar" update=":formEmpresa :listaEmpresa"
+                                 actionListener="#{empresaVisao.salvar}" icon="ui-icon-disk" />
+
+            </h:form>
+            <h:form id="listaEmpresa">
+                <h:panelGroup id="listaEmpresaGrupo">
+                    <!-- tabela a ser listada -->
+                    <p:dataTable id="datalist" value="#{empresaVisao.listEmpresa}" var="s"
+                                 selectionMode="single"
+                                 paginator="true"
+                                 rowKey="#{s.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 emptyMessage="Nenhuma Empresa Cadastrado"
+                                 sortBy="#{s.id}" 
+                                 sortOrder="descending"
+                                 >                  
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Id"/>
+                            </f:facet>
+                            <h:outputText value="#{s.id}"/>
+                        </p:column>
+
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nome da Empresa"/>
+                            </f:facet>
+                            <h:outputText value="#{s.nome}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="CNPJ"/>
+                            </f:facet>
+                            <h:outputText value="#{s.cnpj}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Telefone"/>
+                            </f:facet>
+                            <h:outputText value="#{s.telefone}"/>
+                        </p:column>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Responsável"/>
+                            </f:facet>
+                            <h:outputText value="#{s.responsavel}"/>
+                        </p:column>
+
+
+                        <p:column headerText="Opções" width="20%">
+
+                            <p:commandButton icon="ui-icon-pencil"
+                                             action="#{empresaVisao.abrirFormAlt(s)}" update=":formEmpresa"
+                                             title="Editar" escape="true" />
+
+                            <p:commandButton icon="ui-icon-trash" update=":formEmpresa :listaEmpresa"
+                                             action="#{empresaVisao.remover(s)}">
+
+                                <p:confirm header="Remover"
+                                           message="Tem certeza que deseja excluir  #{s.nome}... "
+                                           icon="ui-icon-alert" />
+
+                            </p:commandButton>
+                        </p:column>
+
+                    </p:dataTable>
+                </h:panelGroup>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>   
+
+</html>
+
